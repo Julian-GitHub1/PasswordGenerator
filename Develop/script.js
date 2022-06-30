@@ -41,7 +41,7 @@ function generatePassword() {
   var optionsSelection = []
 
   for (var i = 0; i < lowercaseList.length; i++) {
-    uppercaseList[i] = lowercaseList[i].toUpperCase
+    uppercaseList[i] = lowercaseList[i].toUpperCase()
   }
 
   if (userNumbers == true) {
@@ -60,6 +60,10 @@ function generatePassword() {
     optionsSelection.push(uppercaseList)
   }
 
+  if (optionsSelection.length === 0) {
+    optionsSelection.push(symbolList)
+  }
+
   var generatedPassword = ""
 
   for (var i = 0; i < passwordLength; i++) {
@@ -67,6 +71,8 @@ function generatePassword() {
     var randomCharacter = getRandomItem(randomList)
     generatedPassword += randomCharacter
   }
+
+  return generatedPassword
 
 }
 
