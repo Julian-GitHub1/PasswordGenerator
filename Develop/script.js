@@ -16,16 +16,21 @@ function getRandomItem(list) {
 
 function generatePassword() {
   var userInput = window.prompt("How long do you want your password to be?")
+
+  if (userInput == null){
+    return;
+  }
   
   var passwordLength = parseInt(userInput)
 
   if (isNaN(passwordLength)) {
     window.alert("That is not a number!")
-    return
+    return generatePassword();
   }
+
   if (passwordLength < 8 || passwordLength > 128) {
     window.alert("Password length must be between 8 and 128 characters")
-    return
+    return generatePassword ();
   }
   
   var userNumbers = window.confirm("Would you like to include numbers in your password?")
@@ -44,6 +49,7 @@ function generatePassword() {
     uppercaseList[i] = lowercaseList[i].toUpperCase()
   }
 
+
   if (userNumbers == true) {
     optionsSelection.push(numberList)
   }
@@ -61,8 +67,13 @@ function generatePassword() {
   }
 
   if (optionsSelection.length === 0) {
-    optionsSelection.push(symbolList)
+    window.alert("Try again")
+    return generatePassword();
   }
+
+
+
+
 
   var generatedPassword = ""
 
